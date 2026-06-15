@@ -18,44 +18,52 @@ The system is designed for:
 - Technical validation
 - Multi-perspective analysis
 - AI consensus research
-┌────────────────────┐
-│    User Query      │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│      Analyst       │
-│ Complexity Routing │
-└─────────┬──────────┘
-          │
-          ▼
- ┌────────┼────────┐
- ▼        ▼        ▼
 
-Reasoner  Reasoner  Technical
-Primary   Fast      Validator
+## Architecture
 
- └────────┼────────┘
-          ▼
+```mermaid
 
-     Critic Agent
-   Challenges Logic
+flowchart TD
 
-          ▼
+    U[User Query]
 
-   Revision Round
+    U --> A[Analyst]
 
-          ▼
+    A --> R1[Primary Reasoner]
 
- Agreement Engine
+    A --> R2[Alternative Reasoner]
 
-          ▼
+    A --> TV[Technical Validator]
 
-     Moderator
+    R1 --> C[Critic]
 
-          ▼
+    R2 --> C
 
-   Final Decision
+    TV --> C
+
+    C --> RR1[Primary Revision]
+
+    C --> RR2[Alternative Revision]
+
+    C --> RR3[Validator Revision]
+
+    RR1 --> AG[Agreement Engine]
+
+    RR2 --> AG
+
+    RR3 --> AG
+
+    AG --> M[Moderator]
+
+    M --> F[Final Answer]
+
+    AG --> CS[Consensus Score]
+
+    AG --> AH[Agreement History]
+
+    AG --> MO[Minority Opinions]
+
+```
 
    ## Features
 
